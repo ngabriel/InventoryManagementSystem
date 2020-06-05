@@ -1,0 +1,16 @@
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\ItemsDAO.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\Runner.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\exceptions\SQLStatementNotUnderstoodException.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\Closeable.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\exceptions\ConnectionNotMadeException.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\Models\Customer.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\LocalDatabaseConnection.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\Models\Items.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\CustomerDAO.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\DatabaseConnection.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\FakeConnection.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\RemoteDatabaseConnection.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\Openable.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\Utils\Input.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\Ims.java
+C:\Users\naomi\Documents\Eclipse-Workspace\Week5Project\src\main\java\com\qa\week5project\DAO\Queryable.java
