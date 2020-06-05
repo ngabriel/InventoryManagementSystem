@@ -1,13 +1,13 @@
 package com.qa.week5project;
 
 import com.qa.week5project.Utils.Input;
+import com.qa.week5project.dao.CustomerDAO;
+import com.qa.week5project.dao.DatabaseConnection;
+import com.qa.week5project.dao.LocalDatabaseConnection;
 
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-import com.qa.week5project.DAO.CustomerDAO;
-import com.qa.week5project.DAO.DatabaseConnection;
-import com.qa.week5project.DAO.LocalDatabaseConnection;
 import com.qa.week5project.Models.Customer;
 
 

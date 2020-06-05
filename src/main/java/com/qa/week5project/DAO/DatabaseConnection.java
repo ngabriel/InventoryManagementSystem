@@ -1,4 +1,4 @@
-package com.qa.week5project.DAO;
+package com.qa.week5project.dao;
 
 import java.sql.Connection; 
 import java.sql.ResultSet;
@@ -57,7 +57,6 @@ public abstract class DatabaseConnection implements Openable, Closeable, Queryab
 			
 			ResultSet resultset = statement.executeQuery(sql);
 			 
-			statement.close();
 			return resultset;
 		} 
 			catch (SQLException e) {

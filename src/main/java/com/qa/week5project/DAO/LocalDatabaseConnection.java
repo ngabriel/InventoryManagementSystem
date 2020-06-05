@@ -1,4 +1,4 @@
-package com.qa.week5project.DAO;
+package com.qa.week5project.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
