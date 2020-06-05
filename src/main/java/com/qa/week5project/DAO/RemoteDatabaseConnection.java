@@ -17,7 +17,12 @@ public class RemoteDatabaseConnection extends DatabaseConnection {
 
 
 		public void openConnection() {
-			setConnection(DriverManager.getConnection("jdbc:mysql://35.242.191.108:3306/ims?serverTimezone=BST", getUsername(), getPassword() ));
+			try {
+				setConnection(DriverManager.getConnection("jdbc:mysql://35.242.191.108:3306/ims?serverTimezone=BST", getUsername(), getPassword() ));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 			
 		}
