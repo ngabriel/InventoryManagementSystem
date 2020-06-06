@@ -60,6 +60,7 @@ public class ImsItemsMenu {
 
 		System.out.println("and how much does this item cost?");
 		Double price = input.getInput();
+		
 
 		Item item = new Item(name, price);
 		// ----------------------------
