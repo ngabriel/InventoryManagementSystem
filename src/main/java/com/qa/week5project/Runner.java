@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import com.qa.week5project.Ims;
 import com.qa.week5project.Models.Customer;
 import com.qa.week5project.Utils.Input;
-import com.qa.week5project.dao.CustomerDAO;
+import com.qa.week5project.dao.CustomerDao;
 import com.qa.week5project.exceptions.ConnectionNotMadeException;
 
 public class Runner {

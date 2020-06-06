@@ -1,33 +1,42 @@
 package com.qa.week5project.Models;
 
-public class Items {
+
+
+public class Item {
 	
-	//private int item_id;
 	private String name;
+	private Double price;
 	
-	private double price;
 	
-	public Items(String name, double price){
-		
+	public Item(String name, Double price) {
 		this.setName(name);
 		this.setPrice(price);
-		
+
 	}
+
 
 	public String getName() {
 		return name;
 	}
 
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public double getPrice() {
+
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+
+	public void setPrice(Double price) {
 		this.price = price;
 	}
-
+	
+	
+	
+	
+	
+	
 }

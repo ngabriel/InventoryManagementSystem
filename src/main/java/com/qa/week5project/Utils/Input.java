@@ -7,8 +7,10 @@ public class Input {
 	
 	Scanner scanner = new Scanner(System.in);
 
-	public String getInput() {
-		return scanner.nextLine();
+	public Double getInput() {
+		return scanner.nextDouble();
+		
+		
 	}
 	
 	public String getString() {

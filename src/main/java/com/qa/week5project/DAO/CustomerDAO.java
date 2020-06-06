@@ -1,5 +1,6 @@
 package com.qa.week5project.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.qa.week5project.Models.Customer;
@@ -7,13 +8,13 @@ import com.qa.week5project.Models.Customer;
 
 //Database Connection class for Customer Table - interacts with Customer Table in Database
 //This class is an example of open for extension closed for modification
-public class CustomerDAO  {
+public class CustomerDao  {
 	
 	private DatabaseConnection databaseConnection;
 	
 	//Constructor class needed as is extended form another Class
 	//the constructor class we take in any connection passed into it
-	public CustomerDAO(DatabaseConnection databaseConnection) {
+	public CustomerDao(DatabaseConnection databaseConnection) {
 		this.databaseConnection = databaseConnection;
 		// TODO Auto-generated constructor stub
 	}
@@ -34,9 +35,15 @@ public class CustomerDAO  {
 		//CustomerDa Extends DatabaseConnection so we can use DatabaseConnection methods
 		//Use Send update method
 		
-			databaseConnection.sendUpdate(sql);
+			databaseConnection.sendUpdate(sql);			
+	}
+	
+	public void viewCustomers() {
+		ResultSet list = databaseConnection.sendQuery("select * from customers");
+		//System.out.println(import buffer));
+
 		
-				
+		
 	}
 
 }
