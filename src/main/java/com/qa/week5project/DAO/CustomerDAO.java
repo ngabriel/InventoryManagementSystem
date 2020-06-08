@@ -1,6 +1,7 @@
 package com.qa.week5project.dao;
 
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
 
 import com.qa.week5project.Models.Customer;
@@ -38,9 +39,25 @@ public class CustomerDao  {
 			databaseConnection.sendUpdate(sql);			
 	}
 	
-	public void viewCustomers() {
-		ResultSet list = databaseConnection.sendQuery("select * from customers");
+	public void viewCustomers() throws SQLException {
+		String sql = "select * from customers";
+		ResultSet rs = databaseConnection.sendQuery(sql);
 		//System.out.println(import buffer));
+		while(rs.next()){
+	         //Retrieve by column name
+	        
+	         String name = rs.getString("customer_name");
+	         String last = rs.getString("customer_fav_colour");
+	         int id = rs.getInt(1);
+	         //Display values
+	      
+	         System.out.println("Customer ID: "+id + " Name: " + name);
+	         //System.out.print("Name: " +name);
+	         //System.out.println(last);
+	        
+	         //how do i close rs.close();
+	      }
+		
 
 		
 		

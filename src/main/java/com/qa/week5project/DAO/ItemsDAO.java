@@ -1,5 +1,8 @@
 package com.qa.week5project.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.qa.week5project.Models.Item;
 
 public class ItemsDao {
@@ -31,7 +34,28 @@ private DatabaseConnection databaseConnection;
 		
 			databaseConnection.sendUpdate(sql);
 		
-				
 	}
+	
+	public void viewItems() throws SQLException {
+		String sql = "select * from items";
+		ResultSet rs = databaseConnection.sendQuery(sql);
+		//System.out.println(import buffer));
+		while(rs.next()){
+	         //Retrieve by column name
+	        
+	         String name = rs.getString("item_name");
+	         double price = rs.getDouble("item_price");
+	         int id = rs.getInt(1);
+	         //Display values
+	      
+	         System.out.println("Item No: "+ id + ", "+name + " £" + price);
+	         //System.out.print("Name: " +name);
+	         //System.out.println(last);
+	        
+	         //how do i close rs.close();
+	      }
+	}
+	
+	
 
 }

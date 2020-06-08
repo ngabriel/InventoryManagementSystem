@@ -1,5 +1,7 @@
 package com.qa.week5project.menus;
 
+import java.sql.SQLException;
+
 import com.qa.week5project.Models.Customer;
 import com.qa.week5project.Models.Item;
 import com.qa.week5project.Utils.Action;
@@ -38,7 +40,8 @@ public class ImsItemsMenu {
 				break;
 			case VIEW:
 				System.out.println("View");
-				viewCustomers();
+				viewItems();
+				break;
 			case EDIT:
 				System.out.println("Edit");
 				editCustomer();
@@ -73,11 +76,20 @@ public class ImsItemsMenu {
 		itemsDao.insertItem(item);
 
 		
-		// TODO Auto-generated method stub
+		connection.closeConnection();
 		
 	}
-	private void viewCustomers() {
-		// TODO Auto-gernerated method stub
+	private void viewItems() {
+		LocalDatabaseConnection connection = new LocalDatabaseConnection("root", "root");
+		ItemsDao iD = new ItemsDao(connection);
+		try {
+			iD.viewItems();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		connection.closeConnection();
+		
 		
 	}
 	private void editCustomer() {

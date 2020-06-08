@@ -2,6 +2,9 @@ package com.qa.week5project.menus;
 
 import com.qa.week5project.dao.CustomerDao;
 import com.qa.week5project.dao.LocalDatabaseConnection;
+
+import java.sql.SQLException;
+
 import com.qa.connecting.dao.RemoteDatabaseConnection;
 import com.qa.week5project.Models.Customer;
 import com.qa.week5project.Utils.Action;
@@ -39,6 +42,7 @@ public class ImsCustomersMenu {
 			case VIEW:
 				System.out.println("View");
 				viewCustomers();
+				break;
 			case EDIT:
 				System.out.println("Edit");
 				editCustomer();
@@ -72,13 +76,19 @@ public class ImsCustomersMenu {
 		customerDao.insertCustomer(customer);
 
 		
-		// TODO Auto-generated method stub
+		connection.closeConnection();
 		
 	}
 	private void viewCustomers() {
 		LocalDatabaseConnection connection = new LocalDatabaseConnection("root", "root");
 		CustomerDao cD = new CustomerDao(connection);
-		cD.viewCustomers();  
+		try {
+			cD.viewCustomers();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		connection.closeConnection();
 		
 	}
 	private void editCustomer() {

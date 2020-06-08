@@ -1,6 +1,7 @@
 package com.qa.week5project;
 
 import com.qa.week5project.Utils.Input;
+
 import com.qa.week5project.Utils.Menus;
 import com.qa.week5project.dao.CustomerDao;
 import com.qa.week5project.dao.DatabaseConnection;
@@ -10,15 +11,16 @@ import com.qa.week5project.menus.ImsItemsMenu;
 
 import java.awt.Desktop.Action;
 import java.sql.SQLException;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 import com.qa.week5project.Models.Customer;
 
 public class Ims {
 
-	// each logger will need to be in each class and you pass the calss name in the
-	// getLogger parameter.
-//	public static final Logger LOGGER = Logger.getLogger(Ims.class);
+
+	//declare a logger and pass in the class, every logger needs class
+ 	public static final Logger LOGGER = Logger.getLogger(Ims.class);
 	// continue watching video from wednesday 3rd june recorded by kart end of day
 	// fofrom 10.43 for rest of logger example
 
@@ -26,6 +28,13 @@ public class Ims {
 	Input input = new Input();
 
 	public void start() {
+		
+		LOGGER.trace("");
+		LOGGER.debug("");
+		LOGGER.info("");
+		LOGGER.warn("");
+		LOGGER.error("");
+		LOGGER.fatal("");
 
 		System.out.println("Database username: ");
 		String user = input.getString();
@@ -36,7 +45,7 @@ public class Ims {
 		// RemoteDatab.... FakeConnec....
 		LocalDatabaseConnection localConnection = new LocalDatabaseConnection(user, password);
 
-		System.out.println("Welcome to the Inventory Management System, Which menu would you like to go to?");
+		System.out.println("Welcome to the Inventory Management System, Enter which menu would you like to go to?");
 		// iterate through our ations enum\s
 
 		for (Menus menu : Menus.values()) {
@@ -51,8 +60,8 @@ public class Ims {
 				break;
 			} catch (NullPointerException | IllegalArgumentException e) {
 				// Logger.debug(e.getStackTrace());
-				// Logger.info(("Computer says no. Please re-enter"))
-				System.out.println("Computers says no. Please re-enter");
+				// Logge.r.info(("Computer says no. Please re-enter"))
+				LOGGER.warn("Not a valid choice, try again");
 			}
 		}
 		System.out.println(selectedMenu);
@@ -73,6 +82,8 @@ public class Ims {
 			break;
 
 		}
+		// DONT FORGET TO CLOSE OFF CONNECTIONS
+				localConnection.closeConnection();
 
 	}
 
