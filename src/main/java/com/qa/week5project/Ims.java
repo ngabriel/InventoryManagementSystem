@@ -8,6 +8,7 @@ import com.qa.week5project.dao.DatabaseConnection;
 import com.qa.week5project.dao.LocalDatabaseConnection;
 import com.qa.week5project.menus.ImsCustomersMenu;
 import com.qa.week5project.menus.ImsItemsMenu;
+import com.qa.week5project.menus.ImsOrderMenu;
 
 import java.awt.Desktop.Action;
 import java.sql.SQLException;
@@ -27,25 +28,28 @@ public class Ims {
 	Menus selectedMenu;
 	Input input = new Input();
 
+	private String message;
+
 	public void start() {
 		
-		LOGGER.trace("");
-		LOGGER.debug("");
-		LOGGER.info("");
-		LOGGER.warn("");
-		LOGGER.error("");
-		LOGGER.fatal("");
+		//LOGGER.trace("");
+		//LOGGER.debug("");
+		//LOGGER.info("");
+		//LOGGER.warn("");
+		//LOGGER.error("");
+		//LOGGER.fatal("");
 
-		System.out.println("Database username: ");
-		String user = input.getString();
-		System.out.println("Database password: ");
-		String password = input.getString();
+		//System.out.println("Database username: ");
+		//String user = input.getString();
+		//System.out.println("Database password: ");
+		//String password = input.getString();
 
 		// here we assign which database we want to connect to, LocalDatabase....
 		// RemoteDatab.... FakeConnec....
-		LocalDatabaseConnection localConnection = new LocalDatabaseConnection(user, password);
+		LocalDatabaseConnection localConnection = new LocalDatabaseConnection("root","root");
+		
 
-		System.out.println("Welcome to the Inventory Management System, Enter which menu would you like to go to?");
+		System.out.println(message);
 		// iterate through our ations enum\s
 
 		for (Menus menu : Menus.values()) {
@@ -55,6 +59,7 @@ public class Ims {
 		System.out.println("------");
 		while (true) {
 			try {
+				
 				String menuInput = input.getString();
 				selectedMenu = Menus.valueOf(menuInput.toUpperCase());
 				break;
@@ -64,21 +69,28 @@ public class Ims {
 				LOGGER.warn("Not a valid choice, try again");
 			}
 		}
+		
+		
 		System.out.println(selectedMenu);
 
 		switch (selectedMenu) {
 		case CUSTOMER:
+			//System.out.println("Going customer menu");
 			ImsCustomersMenu imsCM = new ImsCustomersMenu();
-			imsCM.start();
-			System.out.println("Send to order menu");
+			imsCM.start("Welcome to Customer Menu");
+			System.out.println("after customer menu");
 			break;
 		case ITEM:
-			System.out.println("Going to items menu");
+			System.out.println("Going to item menu");
 			ImsItemsMenu imsIM = new ImsItemsMenu();
 			imsIM.start();
+			System.out.println("after items menu");
 			break;
 		case ORDER:
 			System.out.println("Going to Order menu");
+			ImsOrderMenu imsOM = new ImsOrderMenu();
+			imsOM.start();
+			System.out.println("after  Order menu");
 			break;
 
 		}
@@ -87,6 +99,7 @@ public class Ims {
 
 	}
 
+	
 	// System.out.println("customer address:");
 	// String address = input.getInput();
 

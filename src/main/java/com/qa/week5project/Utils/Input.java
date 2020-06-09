@@ -10,7 +10,10 @@ public class Input {
 	public Double getInput() {
 		return scanner.nextDouble();
 		
-		
+	}
+	
+	public Integer getInt() {
+		return scanner.nextInt();
 	}
 	
 	public String getString() {

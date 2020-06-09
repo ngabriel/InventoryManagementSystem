@@ -2,10 +2,14 @@ package com.qa.week5project.menus;
 
 import com.qa.week5project.dao.CustomerDao;
 import com.qa.week5project.dao.LocalDatabaseConnection;
+import com.qa.week5project.inventories.CustomerInventory;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.qa.connecting.dao.RemoteDatabaseConnection;
+//import com.qa.week5project.RemoteDatabaseConnection;
+//import com.qa.week5project.Switch;
+import com.qa.week5project.Ims;
 import com.qa.week5project.Models.Customer;
 import com.qa.week5project.Utils.Action;
 import com.qa.week5project.Utils.Input;
@@ -13,11 +17,20 @@ import com.qa.week5project.Utils.Menus;
 
 public class ImsCustomersMenu {
 	Input input = new Input();
+	
 	Action selectedAction;
+	String newInput;
+	
+	ResultSet results = null;
+	private Object idOrName;
+	CustomerDao cD;
+	LocalDatabaseConnection connection;
 
-	public void start() {
+	public void start(String message) {
 		
-		System.out.println("Welcome to the Customers menu, what next?");
+		System.out.println(message);
+		loadData();
+		
 		for (Action action : Action.values()) {
 			System.out.println(action.name());
 		}
@@ -30,7 +43,8 @@ public class ImsCustomersMenu {
 			} catch (IllegalArgumentException e) {
 				// Logger.debug(e.getStackTrace());
 				// Logger.info(("Computer says no. Please re-enter"))
-				System.out.println("Computers says no. Please re-enter");
+				System.out.println("Computers says no.  - customer");
+				this.start("Please re-enter");
 			}
 			System.out.println(selectedAction + " a customer");
 			switch (selectedAction) 
@@ -42,6 +56,7 @@ public class ImsCustomersMenu {
 			case VIEW:
 				System.out.println("View");
 				viewCustomers();
+				start("where next");
 				break;
 			case EDIT:
 				System.out.println("Edit");
@@ -58,6 +73,19 @@ public class ImsCustomersMenu {
 
 }
 
+	private void loadData() {
+		LocalDatabaseConnection connection = new LocalDatabaseConnection("root", "root");
+		cD = new CustomerDao(connection);
+		try {
+			results = cD.selectCustomers();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//connection.closeConnection();
+		
+	}
+	
 	private void addCustomer() {
 		System.out.println("Enter Customer name");
 		String name = input.getString();
@@ -74,30 +102,86 @@ public class ImsCustomersMenu {
 		CustomerDao customerDao = new CustomerDao(connection);
 		//LocalDatabaseConnection localConnection//
 		customerDao.insertCustomer(customer);
+		
+		//change to logger
+		System.out.println("Succesfully added " + name);
 
 		
 		connection.closeConnection();
+		System.out.println("Type a menu name to continue or exit to leave");
+		//Input switchInput = new Input();
+		//Switch switch = new Switch();
+		//switch.start(switchInput);
 		
 	}
 	private void viewCustomers() {
-		LocalDatabaseConnection connection = new LocalDatabaseConnection("root", "root");
-		CustomerDao cD = new CustomerDao(connection);
+		connection = new LocalDatabaseConnection("root", "root");
+		cD = new CustomerDao(connection);
 		try {
-			cD.viewCustomers();
+			results = cD.selectCustomers();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		connection.closeConnection();
+
+		
 		
 	}
+	
+	
 	private void editCustomer() {
-		// TODO Auto-generated method stub
+		connection = new LocalDatabaseConnection("root", "root");
+		cD = new CustomerDao(connection);
+		//int row;
+		
+		System.out.println("Enter ID of customer you would like to edit");
+		Input custID = new Input();
+		
+		int cID = custID.getInt();
+		
+		
+		
+		System.out.println("What name would you like to replace with");
+		Input newName = new Input();
+		String nName = newName.getString();
+		
+		
+		try {
+			cD.editCustomer(cID, nName);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(results);
+		
+		
+		
+		
+		
 		
 	}
 	
 	private void deleteCustomer() {
-		// TODO Auto-generated method stub
+		connection = new LocalDatabaseConnection("root", "root");
+		cD = new CustomerDao(connection);
+		//int row;
+		
+		System.out.println("Enter ID of customer you would like to delete");
+		Input custID = new Input();
+		
+		int cID = custID.getInt();
+		
+		cD.deleteCustomer(cID);
+		
+		
+
+				
+			
+
+			}
+		
+		
 		
 	}
-}

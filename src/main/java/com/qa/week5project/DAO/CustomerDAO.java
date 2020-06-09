@@ -3,8 +3,12 @@ package com.qa.week5project.dao;
 import java.sql.ResultSet;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.qa.week5project.Ims;
 import com.qa.week5project.Models.Customer;
+import com.qa.week5project.Utils.Input;
 
 
 //Database Connection class for Customer Table - interacts with Customer Table in Database
@@ -12,6 +16,12 @@ import com.qa.week5project.Models.Customer;
 public class CustomerDao  {
 	
 	private DatabaseConnection databaseConnection;
+	private ResultSet rs = null;
+	Input input = new Input();
+	private int id = 0;
+	private String name = null;
+	
+	public List<String> list=new ArrayList<>();
 	
 	//Constructor class needed as is extended form another Class
 	//the constructor class we take in any connection passed into it
@@ -39,28 +49,78 @@ public class CustomerDao  {
 			databaseConnection.sendUpdate(sql);			
 	}
 	
-	public void viewCustomers() throws SQLException {
+	public ResultSet selectCustomers() throws SQLException {
 		String sql = "select * from customers";
-		ResultSet rs = databaseConnection.sendQuery(sql);
+		
+		this.rs = databaseConnection.sendQuery(sql);
 		//System.out.println(import buffer));
-		while(rs.next()){
+		while(this.rs.next()){
 	         //Retrieve by column name
 	        
-	         String name = rs.getString("customer_name");
-	         String last = rs.getString("customer_fav_colour");
+			//rs.getString ask for the columname
+	         String name = this.rs.getString("customer_name");
+	         String fav_colour = this.rs.getString("customer_fav_colour");
 	         int id = rs.getInt(1);
 	         //Display values
-	      
-	         System.out.println("Customer ID: "+id + " Name: " + name);
-	         //System.out.print("Name: " +name);
-	         //System.out.println(last);
-	        
-	         //how do i close rs.close();
+	         System.out.println(id);
+	         System.out.println( "Name: " + name);
+	         System.out.print("Favorite Color: " + fav_colour);
+	       
+	     	
 	      }
-		
-
+		return rs;	
 		
 		
 	}
+	
+	public ResultSet showRow(int ID) {
+		System.out.println("This is located at Row" + ID);
+		String sql = "select customer_name, customer_fav_colour from customers where customer_id = "+ID+";";
+		
+		this.rs = databaseConnection.sendQuery(sql);
+		
+		return rs;
+		
+	}
+	
+	public ResultSet ShowRow(String name) {
+		
+		return rs;
+		
+	}
+	
+	public void editCustomer(int ID, String newName) throws SQLException {
+		//update customers set customer_name = "David" where id = 8;
+		
+		String sql = "update customers set customer_name = '" +newName+ "' where customer_id = "+ID+";";
+		databaseConnection.sendUpdate(sql);
+		 
+		
+		
+		//String name = "";
+		//String last = +"";
+		
+
+	     
+	            //list.add(rs.getString(1));
+	            //System.out.println(list.get(0));
+	         //how do i close rs.close();
+	      }
+
+	public void deleteCustomer(int cID) {
+		// TODO Auto-generated method stub
+		String sql = "delete from customers where customer_id = "+cID+";";
+		databaseConnection.sendUpdate(sql);
+		
+		System.out.println("Delete succesful");
+		String newRoundMessage = "Type a menu name to continue or 'Exit' to leave";
+		Ims ims = new Ims();
+		
+		ims.start(newRoundMessage, false);
+	}	
+	
+		
+		
+
 
 }

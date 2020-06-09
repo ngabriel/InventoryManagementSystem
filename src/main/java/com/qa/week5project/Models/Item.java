@@ -33,6 +33,12 @@ public class Item {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+
+
+	public static void viewItems() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

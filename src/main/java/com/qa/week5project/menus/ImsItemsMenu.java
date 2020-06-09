@@ -29,7 +29,9 @@ public class ImsItemsMenu {
 			} catch (IllegalArgumentException e) {
 				// Logger.debug(e.getStackTrace());
 				// Logger.info(("Computer says no. Please re-enter"))
-				System.out.println("Computers says no. Please re-enter");
+				System.out.println("Computers says no. Please re-enter - item");
+				this.start();
+				
 			}
 			System.out.println(selectedAction + " an Item");
 			switch (selectedAction) 
@@ -76,10 +78,10 @@ public class ImsItemsMenu {
 		itemsDao.insertItem(item);
 
 		
-		connection.closeConnection();
+		//connection.closeConnection();
 		
 	}
-	private void viewItems() {
+	void viewItems() {
 		LocalDatabaseConnection connection = new LocalDatabaseConnection("root", "root");
 		ItemsDao iD = new ItemsDao(connection);
 		try {

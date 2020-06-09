@@ -3,6 +3,7 @@ package com.qa.week5project;
 import java.sql.SQLException;
 
 
+
 import com.qa.week5project.Ims;
 import com.qa.week5project.Models.Customer;
 import com.qa.week5project.Utils.Input;
@@ -25,9 +26,10 @@ public class Runner {
 			e.printStackTrace();
 		}
 		
-		
+		String openingmessage = "Welcome to the Inventory Management System, Enter which menu would you like to go start?";
 		Ims ims = new Ims();
-		ims.start();
+		
+		ims.start(openingmessage, true);
 	}
 
 }

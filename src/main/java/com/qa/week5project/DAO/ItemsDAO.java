@@ -3,6 +3,7 @@ package com.qa.week5project.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.qa.week5project.Ims;
 import com.qa.week5project.Models.Item;
 
 public class ItemsDao {
@@ -33,7 +34,8 @@ private DatabaseConnection databaseConnection;
 		//Use Send update method
 		
 			databaseConnection.sendUpdate(sql);
-		
+			Ims ims = new Ims();
+			ims.start();
 	}
 	
 	public void viewItems() throws SQLException {
@@ -54,6 +56,7 @@ private DatabaseConnection databaseConnection;
 	        
 	         //how do i close rs.close();
 	      }
+		
 	}
 	
 	
